@@ -40,3 +40,68 @@ module.exports.register = async (req, res) => {
     res.status(500).json({ message: "Something went wrong", error });
   }
 };
+
+
+module.exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if(!email || !password){
+      return res.status(400).json({
+        message: "All feilds are required"
+      })
+    };
+
+    //user
+    let user = await UserModel.findOne({email});
+    if(!user){
+      return res.status(400).json({
+        message :  "User not found"
+      })
+    }
+
+   let isMatch= await bcrypt.compare(password,user.password);
+   if(!isMatch){
+    return res.status(400).json({
+      message : "Indvalid password"
+    })
+   }
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+    });
+
+    res.status(200).json({
+      message : "Login Successfully",user
+    })
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong", error });
+  
+  }
+}
+
+module.exports.logout = async (req, res)=>{
+  res.cookie('token','',{
+    httpOnly : true,
+    expires : new Date(0)
+  })
+
+  res.status(200).json({
+    message : "Logged out successfully"
+  })
+}
+
+
+module.exports.profile = async (req, res)=>{
+  res.status(200).json({
+    user : req.user
+  })
+}
+
+
