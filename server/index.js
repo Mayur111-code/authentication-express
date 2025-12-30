@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",          
-      "https://authentication-express-zeta.vercel.app/" 
+      "https://authentication-express-zeta.vercel.app" 
     ],
     credentials: true,
   })
