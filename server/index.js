@@ -13,7 +13,7 @@ connectDB();
 app.use(
   cors({
     origin: [
-      "https://authentication-express-zeta.vercel.app/"
+      "https://authentication-express-zeta.vercel.app"
     ],
     credentials: true,
   })
