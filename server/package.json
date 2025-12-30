@@ -13,11 +13,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
-<<<<<<< HEAD
     "cors": "^2.8.5",
-=======
-     "cors": "^2.8.5",
->>>>>>> 3d5727a242f04f0e9a2d1d560c49aebd4493048d
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
