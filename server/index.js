@@ -14,7 +14,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",          
-      "https://your-frontend-url.onrender.com"
+      "https://authentication-express-zeta.vercel.app/" 
     ],
     credentials: true,
   })
@@ -25,7 +25,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRoute);
-
 
 app.get("/", (req, res) => {
   res.send("Server is running 🚀");
