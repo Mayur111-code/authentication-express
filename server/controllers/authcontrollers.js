@@ -32,6 +32,7 @@ module.exports.register = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 30 * 24 * 60 * 60 * 1000,
+      sameSite: "None",
     });
 
     res.status(200).json({ message: "User registered successfully" });
@@ -73,6 +74,7 @@ module.exports.login = async (req, res) => {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       maxAge: 30 * 24 * 60 * 60 * 1000,
+      sameSite: "None",
     });
 
     res.status(200).json({
